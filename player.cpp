@@ -13,7 +13,7 @@ void Player::initSprite(){
 void Player::initVariables(){
 	this->writeCooldownMax = 10.f;
 	this->writeCooldown = this->writeCooldownMax;
-	this->hpMax = 15;
+	this->hpMax = 16;
 	this->hp = hpMax;
 }
 
@@ -31,7 +31,9 @@ Player::~Player(){
 int Player::getHp(){
 	return this->hp;
 }
-
+void Player::addHp(int amount){
+	this->hp +=amount;
+}
 
 //Functions
 bool Player::canWrite(){

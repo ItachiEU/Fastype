@@ -23,6 +23,7 @@ private:
 
 	//Enemies
 	std::vector<Enemy* > enemies;
+	int spawnedEnemies;
 	int maxEnemies;
 	int maxEnemiesBase;
 	float frequencyBase;
@@ -41,6 +42,9 @@ public:
 	//Functions
 	void enemySpawning();
 	void checkQuit();
+	void checkHealth();
+	void checkEnemiesCount();
+	void updateBorderCheck();
 	void updateTime();
 	void updateInput();
 	void update();

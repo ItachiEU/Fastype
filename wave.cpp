@@ -10,6 +10,7 @@ void Wave::initBackground(){
 	this->background.setTexture(&this->texture);
 }
 void Wave::initVariables(float difficulty){
+	this->spawnedEnemies = 0;
 	this->difficultyFactor = 1.f;
 	this->frequencyBase = 50.f;
 	this->frequencyMin = 20.f;
@@ -35,7 +36,7 @@ Wave::Wave(sf::RenderWindow* window,Player* player, sf::Font* enemyFont, std::ve
 	this->initBackground();
 }
 Wave::~Wave(){
-	for(auto i : enemies){
+	for(auto *i: this->enemies){
 		delete i;
 	}
 }
@@ -53,12 +54,35 @@ void Wave::checkQuit(){
 }
 
 void Wave::enemySpawning(){
-	if(this->time >= frequency){
-		if((int)enemies.size() < maxEnemies ) 
-			enemies.push_back(new Enemy(this->window, this->WORDS, this->difficulty, this->enemyFont));
+	if(this->time >= this->frequency){
+		if(this->spawnedEnemies < this->maxEnemies ) {
+			this->enemies.push_back(new Enemy(this->window, this->WORDS, this->difficulty, this->enemyFont));
+			this->spawnedEnemies++;
+		}
 
 		this->time = 0;
 	}
+}
+void Wave::updateBorderCheck(){
+	int pointer = 0;
+	for(auto *i: this->enemies){
+		if(i->getShapePos().y + i->getShapeSize().y > this->window->getSize().y){
+			std::cout<<"Deleting: "<<i->getEnemyText()<<std::endl;
+			this->player->addHp(-i->getEnemyText().size());
+			delete this->enemies.at(pointer);
+			this->enemies.erase(this->enemies.begin() + pointer);
+			pointer--;
+		}
+		pointer++;
+	}
+}
+void Wave::checkHealth(){
+	if(this->player->getHp() <= 0)
+		this->endState();
+}
+void Wave::checkEnemiesCount(){
+	if(this->enemies.size() == 0)
+		this->endState();
 }
 void Wave::updateInput(){
 
@@ -76,8 +100,13 @@ void Wave::update(){
 	for(auto i: enemies)
 		i->update();
 
-	//If all enemies dead -> endState(); !!!!
+	this->updateBorderCheck();
 
+	std::cout<<this->player->getHp()<<std::endl;
+
+	this->checkHealth();
+
+	this->checkEnemiesCount();
 
 	this->checkQuit();
 }

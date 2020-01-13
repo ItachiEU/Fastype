@@ -22,8 +22,10 @@ public:
 	//Constructors
 	Player();
 	~Player();
+
 	//Accessors
 	int getHp();
+	void addHp(int amount);
 
 	//Functions
 	void updateCooldown();

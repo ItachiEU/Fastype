@@ -6,21 +6,20 @@ void Enemy::initVariables(){
 	this->posX = rand()%(this->window->getSize().x);
 }
 void Enemy::initShape(){
-	this->shape.setPosition(sf::Vector2f((float)this->posX, 0));
 	this->shape.setSize(sf::Vector2f(100.f, 30.f));
 	this->shape.setFillColor(sf::Color::Red);
-
-	if((float)this->posX > (float)(this->window->getSize().x-(2.f)*this->shape.getSize().x))
-		this->posX-=2*(int)this->shape.getSize().x;
+	if((float)this->posX > (float)((float)this->window->getSize().x-(1.5f)*(float)this->shape.getSize().x))
+		this->posX-=(1.5f)*this->shape.getSize().x;
+	this->shape.setPosition(sf::Vector2f((float)this->posX, 0));
 }
 void Enemy::initText(){
 	this->enemyText.setFont(*this->font);
 	std::string text;
 	if(this->difficulty < 5){
-			int i = rand()%this->difficulty+4;
+			int i = rand()%(this->difficulty+1)+3;
 			int j = rand()%(int)(*this->WORDS)[i].size();
 			while(this->usedKey[(*this->WORDS)[i][j][0]]==1){
-				i = rand()%this->difficulty+4;
+				i = rand()%(this->difficulty+1)+3;
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
 			this->usedKey[(*this->WORDS)[i][j][0]]=1;
@@ -50,9 +49,9 @@ void Enemy::initText(){
 	}
 	this->enemyText.setString(text);
 	this->enemyText.setCharacterSize(18);
-	this->enemyText.setOutlineThickness(1.f);
+	this->enemyText.setOutlineThickness(0.8f);
 	this->enemyText.setOutlineColor(sf::Color::White);
-	this->enemyText.setPosition(this->shape.getPosition().x+this->shape.getGlobalBounds().width/2-this->enemyText.getGlobalBounds().width/2, this->shape.getPosition().y);
+	this->enemyText.setPosition(this->shape.getPosition().x+this->shape.getGlobalBounds().width/2-this->enemyText.getGlobalBounds().width/2, this->shape.getPosition().y+3);
 }
 //Constructors
 Enemy::Enemy(sf::RenderWindow* window, std::vector<std::vector<std::string> >* WORDS, int difficulty, sf::Font* font){
@@ -69,6 +68,15 @@ Enemy::~Enemy(){
 }
 
 //Accessors
+sf::Vector2f Enemy::getShapePos(){
+	return this->shape.getPosition();
+}
+sf::Vector2f Enemy::getShapeSize(){
+	return this->shape.getSize();
+}
+std::string Enemy::getEnemyText(){
+	return this->enemyText.getString();
+}
 
 //Functions
 void Enemy::updateEnemyPos(){

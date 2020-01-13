@@ -89,13 +89,9 @@ void GameState::updateInput(){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		this->endState();
 }
-void GameState::render(sf::RenderTarget* target){
-	if(!target)
-		target = this->window;
-	target->draw(this->background);
-
-	target->draw(this->waveText);
-	this->player->render(target);
+void GameState::updateGameStatus(){
+	if(this->player->getHp() <= 0)
+		this->endState();
 }
 void GameState::update(){
 	this->updateMousePositions();
@@ -106,4 +102,14 @@ void GameState::update(){
 
 	this->initWave();
 
+	this->updateGameStatus();
+}
+void GameState::render(sf::RenderTarget* target){
+	if(!target)
+		target = this->window;
+	target->draw(this->background);
+
+	if(this->player->getHp() > 0)
+		target->draw(this->waveText);
+	this->player->render(target);
 }

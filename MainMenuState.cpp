@@ -78,9 +78,7 @@ void MainMenuState::render(sf::RenderTarget* target){
 	target->draw(this->background);
 
 	this->renderButtons(target);
-
-
-		/*sf::Text mouseText;
+	/*sf::Text mouseText;
 	mouseText.setPosition(this->mousePosView);
 	mouseText.setFont(this->font);
 	mouseText.setCharacterSize(24);

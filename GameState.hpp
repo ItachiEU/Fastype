@@ -42,6 +42,7 @@ public:
 	void initWave();
 	void updateWaveTimer();
 	void updateInput();
+	void updateGameStatus();
 	void update();
 	void render(sf::RenderTarget* target = nullptr);
 };
