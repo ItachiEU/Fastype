@@ -18,7 +18,7 @@ void Player::initSprite(){
 	this->hpStatus.setPosition(673, this->sprite.getPosition().y + 16);
 }
 void Player::initVariables(){
-	this->writeCooldownMax = 10.f;
+	this->writeCooldownMax = 9.f;
 	this->writeCooldown = this->writeCooldownMax;
 	this->hpMax = 16;
 	this->hp = hpMax;

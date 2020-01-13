@@ -16,10 +16,10 @@ void Enemy::initText(){
 	this->enemyText.setFont(*this->font);
 	std::string text;
 	if(this->difficulty < 5){
-			int i = rand()%(this->difficulty+1)+3;
+			int i = (rand()%(this->difficulty+1))+3;
 			int j = rand()%(int)(*this->WORDS)[i].size();
 			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
-				i = rand()%(this->difficulty+1)+3;
+				i = (rand()%(this->difficulty+1))+3;
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
 			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
@@ -27,10 +27,10 @@ void Enemy::initText(){
 	}
 	else
 	if(this->difficulty < 10){
-			int i = rand()%std::min(this->difficulty+2, 12);
+			int i = (rand()%std::min(this->difficulty+2, 11))+2;
 			int j = rand()%(int)(*this->WORDS)[i].size();
 			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
-				i = rand()%std::min(this->difficulty+2, 12);
+				i = (rand()%std::min(this->difficulty+2, 11))+2;
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
 			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
@@ -38,10 +38,10 @@ void Enemy::initText(){
 	}
 	else
 	if(this->difficulty >=10){
-			int i = rand()%std::min(this->difficulty+2, 12);
+			int i = (rand()%std::min(this->difficulty+2, 11))+2;
 			int j = rand()%(int)(*this->WORDS)[i].size();
 			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
-				i = rand()%std::min(this->difficulty+2, 12);
+				i = (rand()%std::min(this->difficulty+2, 11))+2;
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
 			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
@@ -78,14 +78,21 @@ sf::Vector2f Enemy::getShapeSize(){
 std::string Enemy::getEnemyText(){
 	return this->enemyText.getString();
 }
+void Enemy::setEnemyText(std::string updating){
+	this->enemyText.setString(updating);
+}
 
 //Functions
+void Enemy::updateTextPos(){
+	this->enemyText.setPosition(this->shape.getPosition().x+this->shape.getGlobalBounds().width/2-this->enemyText.getGlobalBounds().width/2, this->shape.getPosition().y+3);
+}
 void Enemy::updateEnemyPos(){
 	this->shape.move(0, this->movementSpeed);
 	this->enemyText.move(0, this->movementSpeed);
 }
 void Enemy::update(){
 	this->updateEnemyPos();
+	this->updateTextPos();
 }
 
 void Enemy::render(sf::RenderTarget* target){

@@ -19,6 +19,11 @@ private:
 	std::vector<std::vector<std::string> >* WORDS;
 	std::unordered_map<char, int> usedKey;
 
+	//Input processing
+	bool wordActive;
+	std::string currentWord;
+	unsigned currentEnemy;
+
 	//Pointer to the player we have from gamestate
 	Player* player;
 
@@ -44,6 +49,7 @@ public:
 	void enemySpawning();
 	void checkQuit();
 	void checkHealth();
+	void useInput(char input);
 	void checkEnemiesCount();
 	void updateBorderCheck();
 	void updateHpBar(int val);

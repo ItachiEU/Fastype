@@ -38,11 +38,12 @@ public:
 	virtual ~Enemy();
 
 	//Accessors
-
-	//Functions
 	sf::Vector2f getShapePos();
 	sf::Vector2f getShapeSize();
 	std::string getEnemyText();
+	void setEnemyText(std::string updating);
+	//Functions
+	void updateTextPos();
 	void updateEnemyPos();
 	void update();
 	void render(sf::RenderTarget* target);
