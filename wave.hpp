@@ -17,6 +17,7 @@ private:
 	float difficulty;
 	float difficultyFactor;
 	std::vector<std::vector<std::string> >* WORDS;
+	std::unordered_map<char, int> usedKey;
 
 	//Pointer to the player we have from gamestate
 	Player* player;

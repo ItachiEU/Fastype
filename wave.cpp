@@ -56,7 +56,7 @@ void Wave::checkQuit(){
 void Wave::enemySpawning(){
 	if(this->time >= this->frequency){
 		if(this->spawnedEnemies < this->maxEnemies ) {
-			this->enemies.push_back(new Enemy(this->window, this->WORDS, this->difficulty, this->enemyFont));
+			this->enemies.push_back(new Enemy(this->window, this->WORDS, &this->usedKey, this->difficulty, this->enemyFont));
 			this->spawnedEnemies++;
 		}
 
@@ -69,6 +69,7 @@ void Wave::updateBorderCheck(){
 		if(i->getShapePos().y + i->getShapeSize().y > this->window->getSize().y){
 			std::cout<<"Deleting: "<<i->getEnemyText()<<std::endl;
 			this->player->addHp(-i->getEnemyText().size());
+			this->usedKey[i->getEnemyText()[0]] = 0;
 			delete this->enemies.at(pointer);
 			this->enemies.erase(this->enemies.begin() + pointer);
 			pointer--;

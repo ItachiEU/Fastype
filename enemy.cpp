@@ -18,33 +18,33 @@ void Enemy::initText(){
 	if(this->difficulty < 5){
 			int i = rand()%(this->difficulty+1)+3;
 			int j = rand()%(int)(*this->WORDS)[i].size();
-			while(this->usedKey[(*this->WORDS)[i][j][0]]==1){
+			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
 				i = rand()%(this->difficulty+1)+3;
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
-			this->usedKey[(*this->WORDS)[i][j][0]]=1;
+			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
 			text = (*this->WORDS)[i][j];
 	}
 	else
 	if(this->difficulty < 10){
 			int i = rand()%std::min(this->difficulty+2, 12);
 			int j = rand()%(int)(*this->WORDS)[i].size();
-			while(this->usedKey[(*this->WORDS)[i][j][0]]==1){
+			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
 				i = rand()%std::min(this->difficulty+2, 12);
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
-			this->usedKey[(*this->WORDS)[i][j][0]]=1;
+			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
 			text = (*this->WORDS)[i][j];
 	}
 	else
 	if(this->difficulty >=10){
 			int i = rand()%std::min(this->difficulty+2, 12);
 			int j = rand()%(int)(*this->WORDS)[i].size();
-			while(this->usedKey[(*this->WORDS)[i][j][0]]==1){
+			while((*this->usedKey)[(*this->WORDS)[i][j][0]]==1){
 				i = rand()%std::min(this->difficulty+2, 12);
 				j = rand()%(int)(*this->WORDS)[i].size();
 			}
-			this->usedKey[(*this->WORDS)[i][j][0]]=1;
+			(*this->usedKey)[(*this->WORDS)[i][j][0]]=1;
 			text = (*this->WORDS)[i][j];
 	}
 	this->enemyText.setString(text);
@@ -54,11 +54,12 @@ void Enemy::initText(){
 	this->enemyText.setPosition(this->shape.getPosition().x+this->shape.getGlobalBounds().width/2-this->enemyText.getGlobalBounds().width/2, this->shape.getPosition().y+3);
 }
 //Constructors
-Enemy::Enemy(sf::RenderWindow* window, std::vector<std::vector<std::string> >* WORDS, int difficulty, sf::Font* font){
+Enemy::Enemy(sf::RenderWindow* window, std::vector<std::vector<std::string> >* WORDS, std::unordered_map<char, int>* usedKey, int difficulty, sf::Font* font){
 	this->window = window;
 	this->font = font;
 	this->difficulty = difficulty;
 	this->WORDS = WORDS;
+	this->usedKey = usedKey;
 	this->initVariables();
 	this->initShape();
 	this->initText();

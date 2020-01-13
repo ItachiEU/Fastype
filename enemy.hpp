@@ -20,9 +20,9 @@ private:
 	sf::RenderWindow* window;
 
 	//Text handling	
-	std::unordered_map<char, int> usedKey;
 	int difficulty;
 	std::vector<std::vector<std::string> >* WORDS;
+	std::unordered_map<char, int>* usedKey;
 
 	//Properties
 	float movementSpeed;
@@ -34,7 +34,7 @@ private:
 	void initText();
 public:
 	//Constructors
-	Enemy(sf::RenderWindow* window,std::vector<std::vector<std::string> >* WORDS, int difficulty, sf::Font* font);
+	Enemy(sf::RenderWindow* window,std::vector<std::vector<std::string> >* WORDS, std::unordered_map<char, int>* usedKey, int difficulty, sf::Font* font);
 	virtual ~Enemy();
 
 	//Accessors
