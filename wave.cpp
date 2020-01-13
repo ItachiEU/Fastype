@@ -63,13 +63,38 @@ void Wave::enemySpawning(){
 		this->time = 0;
 	}
 }
+void Wave::updateHpBar(int val){
+	std::string temp = this->player->getHpStatus(), result = "";
+	int currHp;
+	if(temp.size() == 7)
+		currHp = (temp[0]-'0')*10+(temp[1]-'0');
+	else
+		currHp = temp[0]-'0';
+	std::cout<<temp<<" & curr hp: "<<currHp<<std::endl;
+	currHp = std::max(0, currHp+val);
+	result += std::to_string(currHp);
+	result += " / ";
+	result += std::to_string(this->player->getHpMax());
+	this->player->setHpStatus(result);
+	sf::RectangleShape* temporaryShape = this->player->getHpBar();
+	float percentage = (float)((float)(std::abs(val))/(float)(this->player->getHpMax()));
+	std::cout<<percentage<<std::endl;
+	if(val < 0)
+		temporaryShape->setSize(sf::Vector2f(std::max(0.f,(*temporaryShape).getSize().x - 100.f*percentage), (*temporaryShape).getSize().y));
+	else
+		temporaryShape->setSize(sf::Vector2f(std::min((float)this->player->getHpMax(),(*temporaryShape).getSize().x + 100.f*percentage), (*temporaryShape).getSize().y));
+}
 void Wave::updateBorderCheck(){
 	int pointer = 0;
 	for(auto *i: this->enemies){
 		if(i->getShapePos().y + i->getShapeSize().y > this->window->getSize().y){
 			std::cout<<"Deleting: "<<i->getEnemyText()<<std::endl;
+
 			this->player->addHp(-i->getEnemyText().size());
+			this->updateHpBar(-i->getEnemyText().size());
+
 			this->usedKey[i->getEnemyText()[0]] = 0;
+
 			delete this->enemies.at(pointer);
 			this->enemies.erase(this->enemies.begin() + pointer);
 			pointer--;
@@ -90,7 +115,7 @@ void Wave::updateInput(){
 }
 void Wave::updateTime(){
 	this->time +=0.1f;
-	std::cout<<this->time<<std::endl;
+	//std::cout<<this->time<<std::endl;
 }
 void Wave::update(){
 	this->updateTime();
@@ -103,7 +128,7 @@ void Wave::update(){
 
 	this->updateBorderCheck();
 
-	std::cout<<this->player->getHp()<<std::endl;
+	//std::cout<<this->player->getHp()<<std::endl;
 
 	this->checkHealth();
 

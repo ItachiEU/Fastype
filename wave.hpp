@@ -46,6 +46,7 @@ public:
 	void checkHealth();
 	void checkEnemiesCount();
 	void updateBorderCheck();
+	void updateHpBar(int val);
 	void updateTime();
 	void updateInput();
 	void update();

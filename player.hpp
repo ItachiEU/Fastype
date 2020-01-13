@@ -13,6 +13,11 @@ private:
 	float writeCooldownMax;
 	int hpMax;
 	int hp;
+		//Health Bar
+		sf::Font font;
+		sf::RectangleShape hpBarFull;
+		sf::RectangleShape hpBarCurrent;
+		sf::Text hpStatus;
 
 	//Init functions
 	void initTexture();
@@ -25,7 +30,12 @@ public:
 
 	//Accessors
 	int getHp();
+	int getHpMax();
 	void addHp(int amount);
+	void setHpStatus(std::string status);
+	std::string getHpStatus();
+	sf::RectangleShape* getHpBar();
+	void setHpBar(sf::RectangleShape* hpBarCurrent);
 
 	//Functions
 	void updateCooldown();
