@@ -36,6 +36,7 @@ public:
 	std::string getHpStatus();
 	sf::RectangleShape* getHpBar();
 	void setHpBar(sf::RectangleShape* hpBarCurrent);
+	void setCooldown(float val);
 
 	//Functions
 	void updateCooldown();

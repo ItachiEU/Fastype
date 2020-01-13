@@ -127,27 +127,37 @@ void Wave::useInput(char input){
 				this->currentEnemy = this->enemies.size();
 				this->wordActive = false;
 
+				//little cooldown
+				this->player->setCooldown(-3.f);
+
 				//Here we can also give points to the player
+
 			}
 		}
 	}
 	else{
-		for(unsigned i=0; i<enemies.size(); i++){
-			std::string temp = enemies[i]->getEnemyText();
-			if(input == temp[0]){
-				std::reverse(temp.begin(), temp.end());
-				temp.pop_back();
-				
-				this->currentWord = temp;
+		if(this->enemies.size() > 0){
+			unsigned pointer = 0;
+			for(auto *i: this->enemies){
+				std::string temp = i->getEnemyText();
+				if(input == temp[0]){
+					std::reverse(temp.begin(), temp.end());
+					temp.pop_back();
+					
+					this->currentWord = temp;
 
-				//Updating the displaying word on enemy
-				std::string fordisplay = this->currentWord;
-				std::reverse(fordisplay.begin(), fordisplay.end());
-				this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
+					//BUG FIX - WAS DECLARING CURRENT ENEMY AFTER USE!!!
+					this->wordActive = true;
+					this->currentEnemy = pointer;
 
-				this->wordActive = true;
-				this->currentEnemy = i;
-				break;	
+					//Updating the displaying word on enemy
+					std::string fordisplay = this->currentWord;
+					std::reverse(fordisplay.begin(), fordisplay.end());
+					this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
+
+					break;	
+				}
+				pointer++;
 			}
 		}
 	}
@@ -232,7 +242,9 @@ void Wave::updateInput(){
 		else
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 			input = 'z';
-		this->useInput(input);
+
+		if(input != '#')
+			this->useInput(input);
 	}
 }
 void Wave::updateTime(){

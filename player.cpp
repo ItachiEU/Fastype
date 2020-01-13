@@ -18,9 +18,9 @@ void Player::initSprite(){
 	this->hpStatus.setPosition(673, this->sprite.getPosition().y + 16);
 }
 void Player::initVariables(){
-	this->writeCooldownMax = 9.f;
+	this->writeCooldownMax = 8.f;
 	this->writeCooldown = this->writeCooldownMax;
-	this->hpMax = 16;
+	this->hpMax = 20;
 	this->hp = hpMax;
 	//HP BAR
 	std::stringstream ss;
@@ -67,6 +67,9 @@ sf::RectangleShape* Player::getHpBar(){
 }
 void Player::setHpBar(sf::RectangleShape* hpBarCurrent){
 	this->hpBarCurrent = *hpBarCurrent;
+}
+void Player::setCooldown(float val){
+	this->writeCooldown = val;
 }
 
 //Functions
