@@ -93,6 +93,10 @@ void Wave::updateBorderCheck(){
 
 			this->usedKey[i->getEnemyText()[0]] = 0;
 
+			//Setting back to deafult to look for a new target
+			this->wordActive = false;
+			this->currentWord = "";
+
 			delete this->enemies.at(pointer);
 			this->enemies.erase(this->enemies.begin() + pointer);
 			pointer--;

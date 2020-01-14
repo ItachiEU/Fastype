@@ -85,7 +85,6 @@ void Enemy::setEnemyText(std::string updating){
 void Enemy::activate(){
 	this->isActive = true;
 }
-
 //Functions
 void Enemy::updateTextPos(){
 	this->enemyText.setPosition(this->shape.getPosition().x+this->shape.getGlobalBounds().width/2-this->enemyText.getGlobalBounds().width/2, this->shape.getPosition().y+3);
