@@ -2,8 +2,9 @@
 
 //Private functions
 void Enemy::initVariables(){
-	this->movementSpeed = 0.5f;
+	this->movementSpeed = 0.8f;
 	this->posX = rand()%(this->window->getSize().x);
+	this->isActive = false;
 }
 void Enemy::initShape(){
 	this->shape.setSize(sf::Vector2f(100.f, 30.f));
@@ -81,6 +82,9 @@ std::string Enemy::getEnemyText(){
 void Enemy::setEnemyText(std::string updating){
 	this->enemyText.setString(updating);
 }
+void Enemy::activate(){
+	this->isActive = true;
+}
 
 //Functions
 void Enemy::updateTextPos(){
@@ -90,9 +94,18 @@ void Enemy::updateEnemyPos(){
 	this->shape.move(0, this->movementSpeed);
 	this->enemyText.move(0, this->movementSpeed);
 }
+void Enemy::updateTextColor(){
+	if(this->isActive){
+		this->enemyText.setOutlineThickness(1.f);
+		this->enemyText.setOutlineColor(sf::Color::Cyan);
+		this->enemyText.setFillColor(sf::Color::Green);
+		this->isActive = false;
+	}
+}
 void Enemy::update(){
 	this->updateEnemyPos();
 	this->updateTextPos();
+	this->updateTextColor();
 }
 
 void Enemy::render(sf::RenderTarget* target){

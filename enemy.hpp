@@ -27,6 +27,7 @@ private:
 	//Properties
 	float movementSpeed;
 	int posX;
+	bool isActive;
 
 	//Functions
 	void initVariables();
@@ -42,7 +43,10 @@ public:
 	sf::Vector2f getShapeSize();
 	std::string getEnemyText();
 	void setEnemyText(std::string updating);
+	void activate();
+
 	//Functions
+	void updateTextColor();
 	void updateTextPos();
 	void updateEnemyPos();
 	void update();

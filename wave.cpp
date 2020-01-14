@@ -13,7 +13,7 @@ void Wave::initVariables(float difficulty){
 	//Spawning
 	this->spawnedEnemies = 0;
 	this->difficultyFactor = 1.f;
-	this->frequencyBase = 40.f;
+	this->frequencyBase = 35.f;
 	this->frequencyMin = 20.f;
 	this->frequency = std::max(frequencyBase - difficulty*difficultyFactor, frequencyMin);
 	this->time = frequency;
@@ -128,7 +128,7 @@ void Wave::useInput(char input){
 				this->wordActive = false;
 
 				//little cooldown
-				this->player->setCooldown(-3.f);
+				this->player->setCooldown(-6.f);
 
 				//Here we can also give points to the player
 
@@ -153,7 +153,9 @@ void Wave::useInput(char input){
 					//Updating the displaying word on enemy
 					std::string fordisplay = this->currentWord;
 					std::reverse(fordisplay.begin(), fordisplay.end());
+
 					this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
+					this->enemies.at(this->currentEnemy)->activate();
 
 					break;	
 				}

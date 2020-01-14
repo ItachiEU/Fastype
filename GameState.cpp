@@ -27,7 +27,7 @@ void GameState::initText(){
 }
 void GameState::initVariables(){
 	//Wave
-	this->maxTime = 40.f;
+	this->maxTime = 35.f;
 	this->time = 0.f;
 	this->difficulty = 1;
 	this->waveNumber = 1;
