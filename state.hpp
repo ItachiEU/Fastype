@@ -15,6 +15,7 @@
 #include<SFML/Network.hpp>
 
 #include "player.hpp"
+#include "button.hpp"
 
 class State{
 private:

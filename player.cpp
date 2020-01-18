@@ -87,7 +87,6 @@ void Player::addTempPoints(int val){
 int Player::getPoints(){
 	return this->points;
 }
-
 //Functions
 bool Player::canWrite(){
 	if(this->writeCooldown >= writeCooldownMax){

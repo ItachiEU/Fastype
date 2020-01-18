@@ -1,5 +1,6 @@
 #include "GameState.hpp"
 #include "wave.hpp"
+#include "gameover.hpp"
 
 //Private functions
 void GameState::initBackground(){
@@ -43,6 +44,7 @@ void GameState::initVariables(){
 	this->time = 0.f;
 	this->difficulty = 1;
 	this->waveNumber = 1;
+	this->justLost = true;
 }
 void GameState::initDictionary(){
 	this->WORDS[2] = {"am", "an", "as", "at", "be", "by", "cs", "do", "go", "he", "if", "in", "is", "it", "me", "my", "no", "of", "oh", "on", "or", "pi", "re", "so", "to", "up", "us", "we"};
@@ -101,8 +103,14 @@ void GameState::updateInput(){
 		this->endState();
 }
 void GameState::updateGameStatus(){
-	if(this->player->getHp() <= 0)
+	if(this->player->getHp() <= 0 && !justLost)
 		this->endState();
+	if(this->player->getHp() <= 0 && justLost){
+		this->justLost = false;
+		this->states->push(new GameOver(this->window, this->states, this->scoreText));
+		std::cout<<"pushed game over state \n";
+		this->endState();
+	}
 }
 void GameState::update(){
 	this->updateMousePositions();

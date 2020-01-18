@@ -28,6 +28,7 @@ protected:
 	//Wave conditioning 
 	int waveNumber;
 	float difficulty;
+	bool justLost;
 
 	//Functions
 	void initBackground();
