@@ -18,7 +18,8 @@ void Player::initSprite(){
 	this->hpStatus.setPosition(673, this->sprite.getPosition().y + 16);
 }
 void Player::initVariables(){
-	this->writeCooldownMax = 8.f;
+	//input
+	this->writeCooldownMax = 3.f;
 	this->writeCooldown = this->writeCooldownMax;
 	this->hpMax = 20;
 	this->hp = hpMax;
@@ -34,6 +35,9 @@ void Player::initVariables(){
 	this->hpBarCurrent.setFillColor(sf::Color::Red);
 	this->hpBarFull.setSize(sf::Vector2f(100.f, 14.f));
 	this->hpBarCurrent.setSize(sf::Vector2f(100.f, 13.f));
+	//score
+	this->tempPoints = 0;
+	this->points = 0;
 }
 
 //Constructors
@@ -70,6 +74,18 @@ void Player::setHpBar(sf::RectangleShape* hpBarCurrent){
 }
 void Player::setCooldown(float val){
 	this->writeCooldown = val;
+}
+void Player::addPoints(int val){
+	this->points += val;
+}
+int Player::getTempPoints(){
+	return this->tempPoints;
+}
+void Player::addTempPoints(int val){
+	this->tempPoints += val;
+}
+int Player::getPoints(){
+	return this->points;
 }
 
 //Functions

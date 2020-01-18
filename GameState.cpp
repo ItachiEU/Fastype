@@ -12,11 +12,14 @@ void GameState::initBackground(){
 }
 void GameState::initFonts(){
 	if(!this->font.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/FFF_Tusj.ttf"))
-		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE!\n";
-	if(!this->enemyFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/CaviarDreams.ttf"))
-		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE!\n";
+		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE1!\n";
+	if(!this->enemyFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/Sansation-Light.ttf"))
+		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE2!\n";
+	if(!this->scoreFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/CaviarDreams.ttf"))
+		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE3!\n";
 }
 void GameState::initText(){
+	//Wave Text
 	std::stringstream text;
 	text << "WAVE " << this->waveNumber << " INCOMING!\n";
 	this->waveText.setFont(this->font);
@@ -24,10 +27,19 @@ void GameState::initText(){
 	this->waveText.setFillColor(sf::Color::White);
 	this->waveText.setCharacterSize(84);
 	this->waveText.setPosition(270, 300);
+
+	//Score
+	std::stringstream scoreTxt;
+	scoreTxt << "Points: 0";
+	this->scoreText.setFont(this->scoreFont);
+	this->scoreText.setString(scoreTxt.str());
+	this->scoreText.setCharacterSize(48);
+	this->scoreText.setPosition(30, 25);
+
 }
 void GameState::initVariables(){
 	//Wave
-	this->maxTime = 35.f;
+	this->maxTime = 30.f;
 	this->time = 0.f;
 	this->difficulty = 1;
 	this->waveNumber = 1;
@@ -65,7 +77,6 @@ GameState::~GameState(){
 //Functions
 void GameState::updateWaveTimer(){
 	this->time += 0.1f;
-	std::cout<<this->time<<std::endl;
 }
 void GameState::initWave(){
 		if(this->time >= this->maxTime){
@@ -73,7 +84,7 @@ void GameState::initWave(){
 			if(this->player->getHp()>=0){
 				//Aktywowac wave'a
 				std::cout<<"JESTEM W WAVI'E "<<std::endl;
-				this->states->push(new Wave(this->window, this->player, &this->enemyFont, &this->WORDS, this->difficulty));
+				this->states->push(new Wave(this->window, this->player, &this->enemyFont, &this->WORDS, this->difficulty, &this->scoreText));
 				this->difficulty++;
 				this->waveNumber++;
 				this->updateWaveText();

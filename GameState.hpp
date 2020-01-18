@@ -17,6 +17,10 @@ protected:
 	//Player
 	Player* player;
 
+	//Score system
+	sf::Text scoreText;
+	sf::Font scoreFont;
+
 	//Wave timing stuff
 	double time;
 	double maxTime;

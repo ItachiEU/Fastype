@@ -26,6 +26,7 @@ private:
 
 	//Pointer to the player we have from gamestate
 	Player* player;
+	sf::Text* scoreText;
 
 	//Enemies
 	std::vector<Enemy* > enemies;
@@ -41,7 +42,7 @@ private:
 	void initBackground();
 public:
 	//Constructors
-	Wave(sf::RenderWindow* window, Player* player,sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty);
+	Wave(sf::RenderWindow* window, Player* player,sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty, sf::Text* scoreText);
 	virtual ~Wave();
 	//Accessors
 
@@ -53,6 +54,7 @@ public:
 	void checkEnemiesCount();
 	void updateBorderCheck();
 	void updateHpBar(int val);
+	void updatePoints();
 	void updateTime();
 	void updateInput();
 	void update();

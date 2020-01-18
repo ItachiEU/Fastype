@@ -27,12 +27,13 @@ void Wave::initVariables(float difficulty){
 }
 
 //Constructors
-Wave::Wave(sf::RenderWindow* window,Player* player, sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty): State(window, states){
+Wave::Wave(sf::RenderWindow* window,Player* player, sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty, sf::Text* scoreText): State(window, states){
 	this->player = player;
 	this->enemyFont = enemyFont;
 	this->window = window;
 	this->difficulty = difficulty;
 	this->WORDS = WORDS;
+	this->scoreText = scoreText;
 	this->initVariables(difficulty);
 	this->initBackground();
 }
@@ -122,6 +123,9 @@ void Wave::useInput(char input){
 			std::reverse(fordisplay.begin(), fordisplay.end());
 			this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
 
+			//Updating temp score
+			this->player->addTempPoints(1);
+
 			if(this->currentWord.size()==0){
 				//Deleting the enemy
 				delete this->enemies.at(this->currentEnemy);
@@ -132,9 +136,14 @@ void Wave::useInput(char input){
 				this->wordActive = false;
 
 				//little cooldown
-				this->player->setCooldown(-6.f);
+				this->player->setCooldown(-14.f);
 
-				//Here we can also give points to the player
+				//Here we can also give points
+				this->player->addPoints(this->player->getTempPoints());
+				this->updatePoints();
+
+				//setting temp back to 0
+				this->player->addTempPoints(-this->player->getTempPoints());
 
 			}
 		}
@@ -149,6 +158,9 @@ void Wave::useInput(char input){
 					temp.pop_back();
 					
 					this->currentWord = temp;
+
+					//updating score
+					this->player->addTempPoints(1);
 
 					//BUG FIX - WAS DECLARING CURRENT ENEMY AFTER USE!!!
 					this->wordActive = true;
@@ -167,6 +179,11 @@ void Wave::useInput(char input){
 			}
 		}
 	}
+}
+void Wave::updatePoints(){
+	std::stringstream text;
+	text << "Points: "<< this->player->getPoints();
+	this->scoreText->setString(text.str());
 }
 void Wave::updateInput(){
 	if(this->player->canWrite()){
@@ -280,6 +297,8 @@ void Wave::update(){
 	this->updateInput();
 
 	this->checkQuit();
+
+	//debug
 }
 void Wave::render(sf::RenderTarget* target){
 	if(!target)
@@ -288,4 +307,6 @@ void Wave::render(sf::RenderTarget* target){
 	for(auto i: enemies)
 		i->render(target);
 	this->player->render(target);
+
+	target->draw(*this->scoreText);
 }
