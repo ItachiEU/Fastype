@@ -3,11 +3,11 @@
 //Private functions
 
 void GameOver::initFonts(){
-	if(!this->font.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/shangri-la.ttf"))
+	if(!this->font.loadFromFile("../Fonts/shangri-la.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN Game over STATE!\n";
-	if(!this->scoreFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/CaviarDreams.ttf"))
+	if(!this->scoreFont.loadFromFile("../Fonts/CaviarDreams.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME OVER STATE\n";
-	if(!this->overFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/FFF_Tusj.ttf"))
+	if(!this->overFont.loadFromFile("../Fonts/FFF_Tusj.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME OVER_STATE\n";
 }
 
@@ -18,7 +18,7 @@ void GameOver::initButtons(){
 }
 void GameOver::initBackground(){
 	this->background.setSize(sf::Vector2f((float)this->window->getSize().x, (float)this->window->getSize().x));
-	if(!this->backgroundTexture.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/ProjektC/Resources/Backgrounds/gameover.jpg")){
+	if(!this->backgroundTexture.loadFromFile("Resources/Backgrounds/gameover.jpg")){
 		std::cout<<"ERROR: FAILED TO LOAD BACKGROUND TEXTURE IN Gameover\n";
 	}
 	this->backgroundTexture.setSmooth(true);
