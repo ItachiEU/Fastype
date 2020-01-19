@@ -2,7 +2,7 @@
 
 //Private functions
 void MainMenuState::initFonts(){
-	if(!this->font.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/shangri-la.ttf"))
+	if(!this->font.loadFromFile("../Fonts/shangri-la.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN MAIN MENU STATE!\n";
 }
 void MainMenuState::initButtons(){
@@ -18,7 +18,7 @@ void MainMenuState::initButtons(){
 }
 void MainMenuState::initBackground(){
 	this->background.setSize(sf::Vector2f((float)this->window->getSize().x, (float)this->window->getSize().x));
-	if(!this->backgroundTexture.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/ProjektC/Resources/Backgrounds/mainmenu4.jpg")){
+	if(!this->backgroundTexture.loadFromFile("Resources/Backgrounds/mainmenu4.jpg")){
 		std::cout<<"ERROR: FAILED TO LOAD BACKGROUND TEXTURE IN MAIN MENU\n";
 	}
 	this->backgroundTexture.setSmooth(true);

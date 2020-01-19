@@ -3,7 +3,7 @@
 //Private functions
 void Wave::initBackground(){
 	this->background.setSize(sf::Vector2f((float)this->window->getSize().x, (float)this->window->getSize().x));
-	if(!this->texture.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/ProjektC/Resources/Backgrounds/gamebackground.png")){
+	if(!this->texture.loadFromFile("Resources/Backgrounds/gamebackground.png")){
 		std::cout<<"ERROR: FAILED TO LOAD BACKGROUND TEXTURE IN MAIN MENU\n";
 	}
 	this->texture.setSmooth(true);

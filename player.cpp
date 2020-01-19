@@ -2,9 +2,9 @@
 
 //Private functions
 void Player::initTexture(){
-	if(!this->texture.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/ProjektC/Resources/Sprites/player.png"))
+	if(!this->texture.loadFromFile("Resources/Sprites/player.png"))
 		std::cout<<"ERROR LOADING TEXTURE FOR PLAYER!\n";
-	if(!this->font.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/Roboto-Black.ttf"))
+	if(!this->font.loadFromFile("../Fonts/Roboto-Black.ttf"))
 		std::cout<<"ERROR LOADING FONT IN PLAYER.CPP\n";
 }
 void Player::initSprite(){

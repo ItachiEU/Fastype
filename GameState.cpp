@@ -5,18 +5,18 @@
 //Private functions
 void GameState::initBackground(){
 	this->background.setSize(sf::Vector2f((float)this->window->getSize().x, (float)this->window->getSize().x));
-	if(!this->texture.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/ProjektC/Resources/Backgrounds/gamebackground.png")){
+	if(!this->texture.loadFromFile("Resources/Backgrounds/gamebackground.png")){
 		std::cout<<"ERROR: FAILED TO LOAD BACKGROUND TEXTURE IN MAIN MENU\n";
 	}
 	this->texture.setSmooth(true);
 	this->background.setTexture(&this->texture);
 }
 void GameState::initFonts(){
-	if(!this->font.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/FFF_Tusj.ttf"))
+	if(!this->font.loadFromFile("../Fonts/FFF_Tusj.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE1!\n";
-	if(!this->enemyFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/Sansation-Light.ttf"))
+	if(!this->enemyFont.loadFromFile("../Fonts/Sansation-Light.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE2!\n";
-	if(!this->scoreFont.loadFromFile("/home/itachi/Desktop/Programowanie/C/Projekt/Fonts/CaviarDreams.ttf"))
+	if(!this->scoreFont.loadFromFile("../Fonts/CaviarDreams.ttf"))
 		std::cout<<"ERROR: FAILED TO LOAD FONT IN GAME STATE3!\n";
 }
 void GameState::initText(){
