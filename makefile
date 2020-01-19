@@ -1,8 +1,8 @@
 PROG = fastype
 CC = g++
-CPPFLAGS = -O2 -std=c++11 -Wall
+CPPFLAGS = -O2 -std=c++11 -Wall -g
 SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
-OBJS = main.o game.o state.o MainMenuState.o GameState.o button.o player.o wave.o enemy.o gameover.o
+OBJS = main.o game.o state.o MainMenuState.o GameState.o button.o player.o wave.o enemy.o gameover.o ScoreState.o
 
 $(PROG) : $(OBJS)
 	$(CC) -o $(PROG) $(OBJS) $(SFMLFLAGS)
@@ -27,6 +27,8 @@ enemy.o:
 	$(CC) -c $(CPPFLAGS) enemy.cpp
 gameover.o:
 	$(CC) -c $(CPPFLAGS) gameover.cpp
+ScoreState.o:
+	$(CC) -c $(CPPFLAGS) ScoreState.cpp
 
 clean :
 	rm -f core $(PROG) $(OBJS)

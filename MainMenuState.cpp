@@ -13,7 +13,7 @@ void MainMenuState::initButtons(){
 		&this->font, "Quit",
 		sf::Color(100,100,100,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 	this->buttons["SCORES"] = new Button(550, 300, 150, 50,
-		&this->font, "Previous Scores",
+		&this->font, "High Scores",
 		sf::Color(100,100,100,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 }
 void MainMenuState::initBackground(){
@@ -66,8 +66,11 @@ void MainMenuState::updateButtons(){
 	}
 	//New game
 	if(this->buttons["GAME_STATE"]->isPressed()){
-		
 		this->states->push(new GameState(this->window, this->states));
+	}
+	//Show high scores
+	if(this->buttons["SCORES"]->isPressed()){
+		this->states->push(new ScoreState(this->window, this->states));
 	}
 }
 

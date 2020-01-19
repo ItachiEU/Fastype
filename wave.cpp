@@ -13,8 +13,8 @@ void Wave::initVariables(float difficulty){
 	//Spawning
 	this->spawnedEnemies = 0;
 	this->difficultyFactor = 1.f;
-	this->frequencyBase = 35.f;
-	this->frequencyMin = 20.f;
+	this->frequencyBase = 30.f;
+	this->frequencyMin = 15.f;
 	this->frequency = std::max(frequencyBase - difficulty*difficultyFactor, frequencyMin);
 	this->time = frequency;
 	this->maxEnemiesBase = 3;

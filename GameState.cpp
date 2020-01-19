@@ -102,6 +102,34 @@ void GameState::updateInput(){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		this->endState();
 }
+void GameState::updateHighscores(){
+	std::set< int > temporary;
+	temporary.insert(-this->player->getPoints());
+	std::ifstream input("highscores.txt");
+	if(input.is_open()){
+		//read stuff
+		int line;
+		while(input >> line){
+			temporary.insert(-line);
+			std::cout<<line<<std::endl;
+		}
+	}
+	input.close();
+	std::ofstream output("highscores.txt");
+	if(output.is_open()){
+		//write results 
+		int licz = 1;
+		for(auto i: temporary){
+			if(licz<=5)
+				output << -i << "\n";
+			else
+				break;
+			licz++;
+		}
+	}
+	output.close();
+	this->endState();
+}
 void GameState::updateGameStatus(){
 	if(this->player->getHp() <= 0 && !justLost)
 		this->endState();
@@ -109,7 +137,8 @@ void GameState::updateGameStatus(){
 		this->justLost = false;
 		this->states->push(new GameOver(this->window, this->states, this->scoreText));
 		std::cout<<"pushed game over state \n";
-		this->endState();
+		//Write the score into a file
+		this->updateHighscores();
 	}
 }
 void GameState::update(){

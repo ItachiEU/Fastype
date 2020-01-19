@@ -44,6 +44,7 @@ public:
 
 	//Functions
 	void updateWaveText();
+	void updateHighscores();
 	void initWave();
 	void updateWaveTimer();
 	void updateInput();
