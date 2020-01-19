@@ -37,14 +37,28 @@ void GameOver::initScore(){
 	this->scoreText.setPosition(480, 260);
 	this->scoreText.setCharacterSize(86);
 }
+void GameOver::initAnnouncement(){
+	this->scoreText.setPosition(480, 400);
+
+	this->announcement.setString("Congrats! New highscore!");
+	this->announcement.setPosition(230, 260);
+	this->announcement.setFont(this->scoreFont);
+	this->announcement.setCharacterSize(80);
+}
 
 //Constructors
-GameOver::GameOver(sf::RenderWindow* window, std::stack<State*>* states, sf::Text Text) : State(window, states){
+GameOver::GameOver(sf::RenderWindow* window, std::stack<State*>* states, sf::Text Text, Player* player) : State(window, states){
 	this->scoreText = Text;
+	this->player = player;
+	this->highScore = false;
 	this->initFonts();
 	this->initBackground();
 	this->initButtons();
 	this->initScore();
+	this->checkHighscore();
+	if(this->highScore){
+		this->initAnnouncement();
+	}
 }
 GameOver::~GameOver(){
 	delete this->exit;
@@ -54,6 +68,18 @@ GameOver::~GameOver(){
 
 
 //Functions
+void GameOver::checkHighscore(){
+	std::ifstream input("highscores.txt");
+	if(input.is_open()){
+		int a = 0;
+		input >> a;
+		std::cout<<a<<std::endl;
+		if(a < this->player->getPoints()){
+			this->highScore = true;
+		}
+	}
+	input.close();
+}
 void GameOver::updateButtons(){
 	this->exit->update(this->mousePosView);
 
@@ -61,6 +87,7 @@ void GameOver::updateButtons(){
 		this->endState();
 }
 void GameOver::updateInput(){
+
 }
 void GameOver::update(){
 	this->updateMousePositions();
@@ -68,6 +95,9 @@ void GameOver::update(){
 }
 void GameOver::render(sf::RenderTarget* target){
 	target->draw(this->background);
+
+	if(this->highScore)
+		target->draw(this->announcement);
 
 	target->draw(this->overText);
 	target->draw(this->scoreText);

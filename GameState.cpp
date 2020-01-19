@@ -135,7 +135,7 @@ void GameState::updateGameStatus(){
 		this->endState();
 	if(this->player->getHp() <= 0 && justLost){
 		this->justLost = false;
-		this->states->push(new GameOver(this->window, this->states, this->scoreText));
+		this->states->push(new GameOver(this->window, this->states, this->scoreText, this->player));
 		std::cout<<"pushed game over state \n";
 		//Write the score into a file
 		this->updateHighscores();

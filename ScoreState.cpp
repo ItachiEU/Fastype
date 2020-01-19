@@ -12,7 +12,7 @@ void ScoreState::initFonts(){
 }
 
 void ScoreState::initButtons(){
-	this->exit= new Button(530, 650, 150, 50,
+	this->exit= new Button(525, 650, 150, 50,
 		&this->font, "Main Menu",
 		sf::Color(100,100,100,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 }
@@ -33,7 +33,8 @@ void ScoreState::initScoreTexts(){
 			tempText.setString(std::to_string(temp));
 			tempText.setFont(this->scoreFont);
 			tempText.setCharacterSize(56);
-			tempText.setPosition(550, 250+this->counter);
+			std::cout<<"Width: "<<tempText.getGlobalBounds().width<<std::endl;
+			tempText.setPosition(600-tempText.getGlobalBounds().width/4, 250+this->counter);
 			this->counter+=80;
 			this->scoreTexts.push_back(tempText);
 		}
