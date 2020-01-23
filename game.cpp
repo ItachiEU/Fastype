@@ -4,7 +4,7 @@
 void Game::initWindow(){
 	sf::VideoMode videoMode(1250, 850);
 	this->window = new sf::RenderWindow(videoMode, "Fastype!", sf::Style::Titlebar | sf::Style::Close);
-	this->window->setFramerateLimit(120);
+	this->window->setFramerateLimit(100);
 }
 
 //Constructors
@@ -23,11 +23,21 @@ Game::~Game(){
 
 	//Core
 	void Game::run(){
+
+		int delta = 0;
+		int sum = 9;
 		while(this->window->isOpen()){
 
-			this->update();
-
+            sum += delta;
+            auto start = std::chrono::high_resolution_clock::now();
+            for (int i = 0; i < sum/8; i++)
+			  this->update();
+			sum %= 8;
 			this->render();
+			auto end = std::chrono::high_resolution_clock::now();
+
+			std::chrono::duration<double, std::milli> elapsed = end - start;
+			sum += (int)elapsed.count();
 		}
 	}
 void Game::initStates(){

@@ -16,7 +16,7 @@ private:
 	//Level
 	float difficulty;
 	float difficultyFactor;
-	std::vector<std::vector<std::string> >* WORDS;
+	std::vector<std::string>* WORDS;
 	std::unordered_map<char, int> usedKey;
 
 	//Input processing
@@ -42,7 +42,7 @@ private:
 	void initBackground();
 public:
 	//Constructors
-	Wave(sf::RenderWindow* window, Player* player,sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty, sf::Text* scoreText);
+	Wave(sf::RenderWindow* window, Player* player,sf::Font* enemyFont, std::vector<std::string>* WORDS, float difficulty, sf::Text* scoreText);
 	virtual ~Wave();
 	//Accessors
 

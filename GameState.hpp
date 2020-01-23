@@ -13,7 +13,9 @@ protected:
 	sf::Font enemyFont;
 
 	//Dictionary
-	std::vector<std::vector<std::string> > WORDS = std::vector<std::vector<std::string> >(13);
+	//std::vector<std::vector<std::string> > WORDS = std::vector<std::vector<std::string> >(13);
+	std::vector<std::string> WORDS[13];
+	
 	//Player
 	Player* player;
 

@@ -27,7 +27,7 @@ void Wave::initVariables(float difficulty){
 }
 
 //Constructors
-Wave::Wave(sf::RenderWindow* window,Player* player, sf::Font* enemyFont, std::vector<std::vector<std::string> >* WORDS, float difficulty, sf::Text* scoreText): State(window, states){
+Wave::Wave(sf::RenderWindow* window,Player* player, sf::Font* enemyFont, std::vector<std::string>* WORDS, float difficulty, sf::Text* scoreText): State(window, states){
 	this->player = player;
 	this->enemyFont = enemyFont;
 	this->window = window;

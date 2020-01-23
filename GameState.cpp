@@ -86,7 +86,7 @@ void GameState::initWave(){
 			if(this->player->getHp()>=0){
 				//Aktywowac wave'a
 				std::cout<<"JESTEM W WAVI'E "<<std::endl;
-				this->states->push(new Wave(this->window, this->player, &this->enemyFont, &this->WORDS, this->difficulty, &this->scoreText));
+				this->states->push(new Wave(this->window, this->player, &this->enemyFont, this->WORDS, this->difficulty, &this->scoreText));
 				this->difficulty++;
 				this->waveNumber++;
 				this->updateWaveText();

@@ -12,7 +12,7 @@ void ScoreState::initFonts(){
 }
 
 void ScoreState::initButtons(){
-	this->exit= new Button(525, 650, 150, 50,
+	this->exit= new Button(540, 650, 150, 50,
 		&this->font, "Main Menu",
 		sf::Color(100,100,100,200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 }
