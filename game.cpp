@@ -4,7 +4,7 @@
 void Game::initWindow(){
 	sf::VideoMode videoMode(1250, 850);
 	this->window = new sf::RenderWindow(videoMode, "Fastype!", sf::Style::Titlebar | sf::Style::Close);
-	this->window->setFramerateLimit(100);
+	//this->window->setFramerateLimit(100);
 }
 
 //Constructors
