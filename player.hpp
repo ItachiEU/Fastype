@@ -44,6 +44,7 @@ public:
 	int getTempPoints();
 	void addTempPoints(int val);
 	int getPoints();
+	sf::Vector2f getPos();
 
 	//Functions
 	void updateCooldown();

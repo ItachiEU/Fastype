@@ -28,6 +28,10 @@ private:
 	Player* player;
 	sf::Text* scoreText;
 
+	//Lasers
+	//sf::Vertex line1[2];
+	std::vector<std::pair<std::pair<sf::Vertex, sf::Vertex>, int> >lines;
+
 	//Enemies
 	std::vector<Enemy* > enemies;
 	int spawnedEnemies;
@@ -47,6 +51,8 @@ public:
 	//Accessors
 
 	//Functions
+	void spawnLaser(Enemy* enemy);
+	void updateLaser();
 	void enemySpawning();
 	void checkQuit();
 	void checkHealth();

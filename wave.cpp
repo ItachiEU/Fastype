@@ -41,6 +41,8 @@ Wave::~Wave(){
 	for(auto *i: this->enemies){
 		delete i;
 	}
+	//for(auto i: this->lasers)
+	//	delete i;
 }
 
 //Accessors
@@ -113,6 +115,17 @@ void Wave::checkEnemiesCount(){
 	if(this->enemies.size() == 0 && this->spawnedEnemies==this->maxEnemies)
 		this->endState();
 }
+void Wave::spawnLaser(Enemy* enemy){
+	sf::Vertex start, end;
+	sf::Color color(255, 0, 0, 250);
+	start =sf::Vertex(sf::Vector2f(this->player->getPos().x+30, this->player->getPos().y), color);
+	end =sf::Vertex(sf::Vector2f(enemy->getShapePos().x+50, enemy->getShapePos().y+30), color);
+	lines.push_back(std::make_pair(std::make_pair(start, end), 250));
+	//({enemy->getShapePos().x, enemy->getShapePos().y}, {0.f, 0.f});
+	//lasers.push_back(line);
+	//(*lasers[lasers.size()-1]).setPosition(550, 300);
+
+}
 void Wave::useInput(char input){
 	if(this->wordActive){
 		if(this->currentWord[this->currentWord.size()-1] == input){
@@ -122,6 +135,8 @@ void Wave::useInput(char input){
 			std::string fordisplay = this->currentWord;
 			std::reverse(fordisplay.begin(), fordisplay.end());
 			this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
+
+			this->spawnLaser(enemies.at(this->currentEnemy));
 
 			//Updating temp score
 			this->player->addTempPoints(1);
@@ -173,11 +188,29 @@ void Wave::useInput(char input){
 					this->enemies.at(this->currentEnemy)->setEnemyText(fordisplay);
 					this->enemies.at(this->currentEnemy)->activate();
 
+					this->spawnLaser(enemies.at(this->currentEnemy));
+
 					break;	
 				}
 				pointer++;
 			}
 		}
+	}
+}
+void Wave::updateLaser(){
+	int pointer = 0;
+	std::cout<<"Nowy for: \n";
+	for(auto &i: lines){
+		std::cout<<i.second<<std::endl;
+		i.second -= 20;
+		std::cout<<i.second<<std::endl;
+		if(i.second <= 0){
+			this->lines.erase(this->lines.begin() + pointer);
+			pointer--;
+		}
+		i.first.first.color = sf::Color(255, 0, 0, i.second);
+		i.first.second.color = sf::Color(255, 0, 0, i.second);
+		pointer++;
 	}
 }
 void Wave::updatePoints(){
@@ -296,6 +329,8 @@ void Wave::update(){
 
 	this->updateInput();
 
+	this->updateLaser();
+
 	this->checkQuit();
 
 	//debug
@@ -307,6 +342,15 @@ void Wave::render(sf::RenderTarget* target){
 	for(auto i: enemies)
 		i->render(target);
 	this->player->render(target);
+	
+	std::cout<<lines.size()<<std::endl;
+
+	for(auto i: lines){
+		sf::Vertex line[2];
+		line[0] = i.first.first;
+		line[1] = i.first.second;
+		target->draw(line, 2, sf::Lines);
+	}
 
 	target->draw(*this->scoreText);
 }

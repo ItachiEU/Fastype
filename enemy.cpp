@@ -1,9 +1,5 @@
 #include "enemy.hpp"
 
-
-//std::mt_19937 generator(dev);
-//generator
-
 //Private functions
 void Enemy::initVariables(){
 	this->movementSpeed = 0.8f;

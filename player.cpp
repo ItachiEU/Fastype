@@ -87,6 +87,9 @@ void Player::addTempPoints(int val){
 int Player::getPoints(){
 	return this->points;
 }
+sf::Vector2f Player::getPos(){
+	return this->sprite.getPosition();
+}
 //Functions
 bool Player::canWrite(){
 	if(this->writeCooldown >= writeCooldownMax){
