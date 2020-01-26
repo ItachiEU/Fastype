@@ -2,7 +2,7 @@
 
 //Private functions
 void Enemy::initVariables(){
-	this->movementSpeed = 0.8f;
+	this->movementSpeed = 1.f;
 	this->posX = rand()%(this->window->getSize().x);
 	this->isActive = false;
 }

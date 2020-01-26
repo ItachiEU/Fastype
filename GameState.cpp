@@ -82,7 +82,6 @@ void GameState::initWave(){
 			this->time = 0.f;
 			if(this->player->getHp()>=0){
 				//Aktywowac wave'a
-				std::cout<<"JESTEM W WAVI'E "<<std::endl;
 				this->states->push(new Wave(this->window, this->player, &this->enemyFont, this->WORDS, this->difficulty, &this->scoreText));
 				this->difficulty++;
 				this->waveNumber++;
@@ -133,7 +132,6 @@ void GameState::updateGameStatus(){
 	if(this->player->getHp() <= 0 && justLost){
 		this->justLost = false;
 		this->states->push(new GameOver(this->window, this->states, this->scoreText, this->player));
-		std::cout<<"pushed game over state \n";
 		//Write the score into a file
 		this->updateHighscores();
 	}

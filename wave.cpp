@@ -15,7 +15,7 @@ void Wave::initVariables(float difficulty){
 	this->difficultyFactor = 1.f;
 	this->frequencyBase = 30.f;
 	this->frequencyMin = 15.f;
-	this->frequency = std::max(frequencyBase - difficulty*difficultyFactor, frequencyMin);
+	this->frequency = std::max(frequencyBase - difficulty*(difficultyFactor+1.f), frequencyMin);
 	this->time = frequency;
 	this->maxEnemiesBase = 3;
 	this->maxEnemies = maxEnemiesBase + (int)difficulty*(int)difficultyFactor;
@@ -71,7 +71,7 @@ void Wave::updateHpBar(int val){
 		currHp = (temp[0]-'0')*10+(temp[1]-'0');
 	else
 		currHp = temp[0]-'0';
-	std::cout<<temp<<" & curr hp: "<<currHp<<std::endl;
+
 	currHp = std::max(0, currHp+val);
 	result += std::to_string(currHp);
 	result += " / ";
@@ -79,7 +79,7 @@ void Wave::updateHpBar(int val){
 	this->player->setHpStatus(result);
 	sf::RectangleShape* temporaryShape = this->player->getHpBar();
 	float percentage = (float)((float)(std::abs(val))/(float)(this->player->getHpMax()));
-	std::cout<<percentage<<std::endl;
+
 	if(val < 0)
 		temporaryShape->setSize(sf::Vector2f(std::max(0.f,(*temporaryShape).getSize().x - 100.f*percentage), (*temporaryShape).getSize().y));
 	else
@@ -199,11 +199,11 @@ void Wave::useInput(char input){
 }
 void Wave::updateLaser(){
 	int pointer = 0;
-	std::cout<<"Nowy for: \n";
+
 	for(auto &i: lines){
-		std::cout<<i.second<<std::endl;
+
 		i.second -= 20;
-		std::cout<<i.second<<std::endl;
+
 		if(i.second <= 0){
 			this->lines.erase(this->lines.begin() + pointer);
 			pointer--;
@@ -305,7 +305,6 @@ void Wave::updateInput(){
 }
 void Wave::updateTime(){
 	this->time +=0.1f;
-	//std::cout<<this->time<<std::endl;
 }
 void Wave::update(){
 	//Updating writing cooldown
@@ -342,8 +341,6 @@ void Wave::render(sf::RenderTarget* target){
 	for(auto i: enemies)
 		i->render(target);
 	this->player->render(target);
-	
-	std::cout<<lines.size()<<std::endl;
 
 	for(auto i: lines){
 		sf::Vertex line[2];

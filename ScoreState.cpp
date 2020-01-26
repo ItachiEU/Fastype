@@ -33,7 +33,6 @@ void ScoreState::initScoreTexts(){
 			tempText.setString(std::to_string(temp));
 			tempText.setFont(this->scoreFont);
 			tempText.setCharacterSize(56);
-			std::cout<<"Width: "<<tempText.getGlobalBounds().width<<std::endl;
 			tempText.setPosition(600-tempText.getGlobalBounds().width/4, 250+this->counter);
 			this->counter+=80;
 			this->scoreTexts.push_back(tempText);
