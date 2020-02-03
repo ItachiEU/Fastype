@@ -1,9 +1,11 @@
 #include "game.hpp"
 
+	static sf::VideoMode videoMode(1250, 850);
+	static const char *aaa = "Fastype!";
+
 //Init functions
 void Game::initWindow(){
-	sf::VideoMode videoMode(1250, 850);
-	this->window = new sf::RenderWindow(videoMode, "Fastype!", sf::Style::Titlebar | sf::Style::Close);
+	this->window = new sf::RenderWindow(videoMode, aaa, sf::Style::Titlebar | sf::Style::Close);
 	//this->window->setFramerateLimit(100);
 }
 
