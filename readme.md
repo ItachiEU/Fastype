@@ -30,9 +30,9 @@ make fastype
 
 ![Screenshot](https://i.ibb.co/TmtNcHt/menu.png)
 
-![Screenshot](https://i.postimg.cc/Y0WFGPTK/Game.png)
+![Screenshot](https://i.ibb.co/nfcpBFq/Game.png)
 
-![Screenshot](https://i.postimg.cc/J7GQQKSS/gameplay.png)
+![Screenshot](https://i.ibb.co/6WwM0hv/gameplay.png)
 
-![Screenshot](https://i.postimg.cc/z3Ygnj1L/scores.png)
+![Screenshot](https://i.ibb.co/NVMVyBY/scores.png)
 
