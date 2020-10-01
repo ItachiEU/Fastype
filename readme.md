@@ -28,7 +28,7 @@ make fastype
 ## Some screenshots
 
 
-![Screenshot](https://ibb.co/vZkM1Jk)
+![Screenshot](https://i.ibb.co/TmtNcHt/menu.png)
 
 ![Screenshot](https://i.postimg.cc/Y0WFGPTK/Game.png)
 
