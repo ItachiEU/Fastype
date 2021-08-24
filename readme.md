@@ -28,11 +28,11 @@ make fastype
 ## Some screenshots
 
 
-![Screenshot](https://i.ibb.co/TmtNcHt/menu.png)
+[![menu.png](https://i.postimg.cc/br11R176/menu.png)](https://postimg.cc/RJV3SJVf)
 
-![Screenshot](https://i.ibb.co/nfcpBFq/Game.png)
+[![Game.png](https://i.postimg.cc/Z5svpf9b/Game.png)](https://postimg.cc/fVXbhfjp)
 
-![Screenshot](https://i.ibb.co/6WwM0hv/gameplay.png)
+[![gameplay.png](https://i.postimg.cc/Hs2ysWd7/gameplay.png)](https://postimg.cc/8j75ZSF1)
 
-![Screenshot](https://i.ibb.co/NVMVyBY/scores.png)
+[![scores.png](https://i.postimg.cc/x18cfK6W/scores.png)](https://postimg.cc/fV4w50nK)
 
